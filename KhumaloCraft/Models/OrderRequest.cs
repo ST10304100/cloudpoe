@@ -2,6 +2,7 @@
 {
     public class OrderRequest
     {
+
         public int OrderRequestId { get; set; }
 
         public int OrderId { get; set; }

@@ -1,5 +1,4 @@
 ﻿@model IEnumerable<KhumaloCraft.Models.OrderHistory>
-
 @{
     ViewData["Title"] = "Order History";
 }
@@ -10,8 +9,6 @@
         <thead>
             <tr>
                 <th>Order ID</th>
-                <th>Product Name</th>
-                <th>Product Price</th>
                 <th>Order Date</th>
                 <th>Order Status</th>
             </tr>
@@ -21,9 +18,7 @@
             {
                 <tr>
                     <td>@order.OrderId</td>
-                    <td>@order.ProductName</td>
-                    <td>R @order.ProductPrice.ToString("0.00")</td>
-                    <td>@order.OrderDate.ToString("MM/dd/yyyy")</td>
+                    <td>@order.OrderDate</td>
                     <td>@order.OrderStatus</td>
                 </tr>
             }
