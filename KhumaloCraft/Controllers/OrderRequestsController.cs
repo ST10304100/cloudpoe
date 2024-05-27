@@ -7,16 +7,19 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using KhumaloCraft.Data;
 using KhumaloCraft.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace KhumaloCraft.Controllers
 {
     public class OrderRequestsController : Controller
     {
         private readonly KhumaloCraftDbContext _context;
+        private readonly UserManager<IdentityUser> _userManager;
 
-        public OrderRequestsController(KhumaloCraftDbContext context)
+        public OrderRequestsController(KhumaloCraftDbContext context, UserManager<IdentityUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         // GET: OrderRequests
@@ -160,6 +163,57 @@ namespace KhumaloCraft.Controllers
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
+        }
+
+        //Admin View
+        public IActionResult Admin()
+        {
+            var orderRequests = _context.OrderRequests.Include(o => o.Order).Include(o => o.Product).ToList();
+            return View(orderRequests);
+        }
+
+        //Proceess the order
+        public async Task<IActionResult> ProcessOrderRequest(int id)
+        {
+            var orderRequest = await _context.OrderRequests
+                .Include(o => o.Order)
+                .Include(o => o.Product)
+                .FirstOrDefaultAsync(o => o.OrderRequestId == id);
+
+            if (orderRequest == null)
+            {
+                return NotFound();
+            }
+
+            // Update the OrderStatus to "Approved"
+            orderRequest.OrderStatus = "Approved";
+
+            // Save the changes to the database
+            await _context.SaveChangesAsync();
+
+            // Redirect back to the OrderRequests Admin page
+            return RedirectToAction("Admin", "OrderRequests");
+        }
+
+        public async Task<IActionResult> OrderHistory()
+        {
+            var user = await _userManager.GetUserAsync(User);
+            var userId = await _userManager.GetUserIdAsync(user);
+
+            var orders = await _context.Orders
+                .Where(o => o.UserId == userId)
+                .SelectMany(o => o.OrderRequests)
+                .Select(or => new OrderHistory
+                {
+                    OrderId = or.Order.OrderId,
+                    ProductName = or.Product.Name,
+                    ProductPrice = (decimal)or.Product.Price,
+                    OrderDate = or.Order.OrderDate,
+                    OrderStatus = or.OrderStatus
+                })
+                .ToListAsync();
+
+            return View(orders);
         }
 
         private bool OrderRequestExists(int id)
