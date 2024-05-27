@@ -10,6 +10,8 @@ namespace KhumaloCraft.Models
 
         public DateTime OrderDate { get; set; }
 
+        public string? Status { get; set; }
+
         public virtual ICollection<OrderRequest> OrderRequests { get; set; } = new List<OrderRequest>();
 
         [ForeignKey("UserId")]
