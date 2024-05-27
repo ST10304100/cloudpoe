@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using KhumaloCraft.Data;
 using KhumaloCraft.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace KhumaloCraft.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class ProductsController : Controller
     {
         private readonly KhumaloCraftDbContext _context;
