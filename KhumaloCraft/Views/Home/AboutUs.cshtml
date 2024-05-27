@@ -1,0 +1,92 @@
+﻿@{
+    ViewBag.Title = "About Us";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewBag.Title - KhumaloCraft Emporium</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            color: #212529;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+        }
+
+        .section-heading {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: #007bff;
+        }
+
+        .section-content {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+
+        .team-member {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+            .team-member img {
+                border-radius: 50%;
+                width: 150px;
+                height: 150px;
+                object-fit: cover;
+                margin-bottom: 20px;
+                border: 5px solid #007bff;
+            }
+
+            .team-member h3 {
+                font-size: 1.5rem;
+                font-weight: 700;
+                margin-bottom: 10px;
+                color: #007bff;
+            }
+
+            .team-member p {
+                font-size: 1.1rem;
+            }
+
+        .label {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-top: 20px;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="text-center">
+            <h1 class="display-4 section-heading">About KhumaloCraft Emporium</h1>
+            <div class="label">What We Offer</div>
+            <p class="section-content">Discover the finest handcrafted products from artisans around the globe at KhumaloCraft Emporium. We offer a curated selection of unique items that celebrate craftsmanship and creativity.</p>
+            <div class="label">What Inspired Us</div>
+            <p class="section-content">At KhumaloCraft Emporium, we are inspired by the dedication and talent of artisans worldwide. Our mission is to provide a platform where their work can be appreciated and celebrated by customers who value quality and authenticity.</p>
+            <div class="label">Our Goal</div>
+            <p class="section-content">Our goal is to create a global community of artisans and customers who share a passion for handmade craftsmanship. We strive to connect talented makers with discerning buyers, fostering a deeper appreciation for the beauty and artistry of handmade goods.</p>
+        </div>
+
+        <div class="team-member">
+            <img src="~/image/drake.png" alt="James Khumalo" />
+            <h3>James Khumalo</h3>
+            <p>Founder & CEO</p>
+            <p>James Khumalo founded KhumaloCraft Emporium with a vision to connect artisans with customers worldwide.</p>
+        </div>
+    </div>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
