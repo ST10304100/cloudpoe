@@ -11,7 +11,9 @@ namespace KhumaloCraft.Data
         public KhumaloCraftDbContext(DbContextOptions<KhumaloCraftDbContext> options) : base(options)
         {
         }
+        public virtual DbSet<Order> Orders { get; set; }
 
+        public virtual DbSet<OrderRequest> OrderRequests { get; set; }
         public DbSet<Product> Product { get; set; }
 
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
