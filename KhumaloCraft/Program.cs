@@ -7,8 +7,12 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+//builder.Services.AddDbContext<KhumaloCraftDbContext>(options =>
+//            options.UseSqlServer(builder.Configuration.GetConnectionString("KhumaloCraftDEV")));
+
 builder.Services.AddDbContext<KhumaloCraftDbContext>(options =>
-            options.UseSqlServer(builder.Configuration.GetConnectionString("KhumaloCraftDEV")));
+            options.UseSqlServer(builder.Configuration.GetConnectionString("KhumaloCraftLIVE")));
+
 
 builder.Services.AddDefaultIdentity<IdentityUser>().AddDefaultTokenProviders()
                 .AddRoles<IdentityRole>()
